@@ -33,3 +33,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+#firebase
+fast-feedback-demo-e408f-firebase-adminsdk-7dn5q-fe5ba12b1d.json

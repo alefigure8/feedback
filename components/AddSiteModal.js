@@ -1,4 +1,8 @@
+import { useAuth } from '@/lib/auth';
+import { createSite } from '@/lib/db';
 import {useRef} from 'react'
+
+import { useForm } from "react-hook-form";
 
 const {
   Button,
@@ -11,15 +15,31 @@ const {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  useToast,
   useDisclosure, } = require("@chakra-ui/react")
 
 export default function AddSiteModal() {
+  const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
-
   const initialRef = useRef()
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const auth = useAuth()
 
-  const createSite = (e) => {
-    console.log(e.target);
+  function onCreateSite({site, url}){
+    createSite({
+      authorId: auth.user.uid,
+      createdAt: new Date().toISOString(),
+      site,
+      url
+    })
+    toast({
+      title: 'Account created.',
+      description: "We've added your site!.",
+      status: 'success',
+      duration: 5000,
+      isClosable: true,
+    })
+    onClose()
   }
 
   return (
@@ -34,24 +54,24 @@ export default function AddSiteModal() {
         onClose={onClose}
       >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent as="form" onSubmit={handleSubmit(onCreateSite)}>
           <ModalHeader fontWeight='bold'>Add Site</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <FormControl>
-              <FormLabel>Name</FormLabel>
-              <Input ref={initialRef} placeholder='My site' />
-            </FormControl>
+              <FormControl>
+                <FormLabel>Name</FormLabel>
+                <Input autoFocus ref={initialRef} placeholder='My site' {...register("site", { required: true })} />
+              </FormControl>
 
-            <FormControl mt={4}>
-              <FormLabel>Link</FormLabel>
-              <Input placeholder='http://website.com' />
-            </FormControl>
+              <FormControl mt={4}>
+                <FormLabel>Link</FormLabel>
+                <Input placeholder='http://website.com' {...register("url", { required: true })} />
+              </FormControl>
           </ModalBody>
 
           <ModalFooter>
             <Button onClick={onClose} mr={3} fontWeight='medium'>Cancel</Button>
-            <Button onClick={ (e) => {createSite(e); onClose()}}  backgroundColor='#99FFFE' color='#194D4C' fontWeight='medium'>
+            <Button type='submit'  backgroundColor='#99FFFE' color='#194D4C' fontWeight='medium'>
               Create
             </Button>
           </ModalFooter>
