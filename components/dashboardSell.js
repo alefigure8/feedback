@@ -32,8 +32,8 @@ const DashboardShell = ({children}) => {
           <Link>Sites</Link>
         </Stack>
         <Flex alignItems="center">
-          <Link mr={4}>Account</Link>
-          <Avatar size="sm" src={auth.user.photoUrl} />
+          {auth.user && <Link mr={4} onClick={() => auth.signout()}>Log Out</Link>}
+          <Avatar size="sm" src={auth?.user?.photoUrl}/>
         </Flex>
       </Flex>
       <Flex backgroundColor="gray.100" p={8} height='100%'>

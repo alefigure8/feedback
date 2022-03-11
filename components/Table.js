@@ -1,17 +1,17 @@
 import React from 'react'
 import {Box, Text} from '@chakra-ui/react'
 
-export const Th = (props) => {
+export const Th = (props) => (
   <Text
-    as='th'
-    textTransform='upperCase'
-    fontSize='xs'
-    color='gray.500'
-    fontWeight='medium'
+    as="th"
+    textTransform="uppercase"
+    fontSize="xs"
+    color="gray.500"
+    fontWeight="medium"
     px={4}
     {...props}
   />
-}
+);
 
 export const Td = (props) => (
   <Box
