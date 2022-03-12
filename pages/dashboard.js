@@ -1,6 +1,4 @@
-import { useAuth } from '@/lib/auth'
 import useSWR from 'swr'
-
 import EmptyState from '@/components/EmptyState'
 import SiteTableSkeleton from '@/components/SiteTableSkeleton'
 import DashboardShell from '@/components/DashboardSell'
@@ -9,7 +7,6 @@ import SiteTable from '@/components/SiteTable'
 
 
 export default function Dashboard() {
-  const auth = useAuth()
   const { data } = useSWR('/api/sites', fetcher)
 
   if(!data) {

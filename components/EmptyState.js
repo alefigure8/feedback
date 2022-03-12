@@ -3,10 +3,7 @@ import {
   Heading,
   Flex,
   Text,
-  Button
 } from '@chakra-ui/react'
-import { Logo } from '@/styles/icons'
-import DashboardShell from './DashboardSell'
 import AddSiteModal from './AddSiteModal'
 
 const EmptyState = () => (
