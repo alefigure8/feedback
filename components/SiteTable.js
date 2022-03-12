@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Skeleton } from '@chakra-ui/react';
 import { Table, Tr, Th, Td } from './Table';
+import Link from 'next/link';
 
 const SkeletonRow = ({ width }) => (
   <Box as="tr">
@@ -19,7 +20,7 @@ const SkeletonRow = ({ width }) => (
   </Box>
 );
 
-const SiteTable = () => {
+const SiteTable = ({sites}) => {
   return (
     <Table>
       <thead>
@@ -32,11 +33,22 @@ const SiteTable = () => {
         </Tr>
       </thead>
       <tbody>
-        <SkeletonRow width="75px" />
-        <SkeletonRow width="125px" />
-        <SkeletonRow width="50px" />
-        <SkeletonRow width="100px" />
-        <SkeletonRow width="75px" />
+        {sites.map(site => (
+          <Box as="tr" key={site.id}>
+            <Td fontWeight='medium'>
+              {site.site}
+            </Td>
+            <Td>
+              {site.url}
+            </Td>
+            <Td>
+              <Link href='/'>View Feedback</Link>
+            </Td>
+            <Td>
+              {site.createdAt}
+            </Td>
+          </Box>
+          ))}
       </tbody>
     </Table>
   );

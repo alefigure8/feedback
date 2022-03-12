@@ -5,17 +5,23 @@ import EmptyState from '@/components/EmptyState'
 import SiteTableSkeleton from '@/components/SiteTableSkeleton'
 import DashboardShell from '@/components/DashboardSell'
 import fetcher from '@/utils/fetcher'
+import SiteTable from '@/components/SiteTable'
 
 
 export default function Dashboard() {
   const auth = useAuth()
-  const { data, error } = useSWR('/api/sites', fetcher)
-  console.log(data)
+  const { data } = useSWR('/api/sites', fetcher)
 
   if(!data) {
-    return <DashboardShell><SiteTableSkeleton /></DashboardShell>
+    return (
+      <DashboardShell>
+        <SiteTableSkeleton />
+      </DashboardShell>
+    )
   }
 
-  return <DashboardShell><EmptyState /></DashboardShell>
-
+  return (
+    <DashboardShell>
+      {data.sites ? <SiteTable sites={data.sites} /> : <EmptyState />}
+    </DashboardShell>)
 }
