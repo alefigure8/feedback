@@ -6,7 +6,7 @@ import {
   Button
 } from '@chakra-ui/react'
 import { Logo } from '@/styles/icons'
-import DashboardShell from './dashboardSell'
+import DashboardShell from './DashboardSell'
 import AddSiteModal from './AddSiteModal'
 
 const EmptyState = () => (
