@@ -1,7 +1,6 @@
 import { useAuth } from '@/lib/auth';
 import { createSite } from '@/lib/db';
 import fetcher from '@/utils/fetcher';
-import { transform } from 'framer-motion';
 import {useRef} from 'react'
 
 import { useForm } from "react-hook-form";

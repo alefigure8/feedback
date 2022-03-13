@@ -5,8 +5,7 @@ import {
   Text,
   Button
 } from '@chakra-ui/react'
-import { Logo } from '@/styles/icons'
-import DashboardShell from './DashboardSell'
+import DashboardShell from './DashboardShell'
 
 const FreePlanEmptyState = () => (
   <DashboardShell>
