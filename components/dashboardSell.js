@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react'
 import { Logo } from '@/styles/icons'
 import { useAuth } from '@/lib/auth'
+import AddSiteModal from './AddSiteModal'
 
 const DashboardShell = ({children}) => {
 
@@ -49,7 +50,10 @@ const DashboardShell = ({children}) => {
               <BreadcrumbLink color='gray.700' fontSize='sm'>Sites</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
-          <Heading size='lg' mb={4}>My Sites</Heading>
+          <Flex justifyContent='space-between'>
+            <Heading size='lg' mb={4}>My Sites</Heading>
+            <AddSiteModal>+ Add Site</AddSiteModal>
+          </Flex>
         {children}
         </Flex>
       </Flex>

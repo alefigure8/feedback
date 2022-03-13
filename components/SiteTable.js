@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Skeleton } from '@chakra-ui/react';
 import { Table, Tr, Th, Td } from './Table';
 import Link from 'next/link';
+import { format, parseISO } from 'date-fns';
 
 const SkeletonRow = ({ width }) => (
   <Box as="tr">
@@ -34,7 +35,7 @@ const SiteTable = ({sites}) => {
       </thead>
       <tbody>
         {sites.map(site => (
-          <Box as="tr" key={site.id}>
+          <Box as="tr" key={site.url}>
             <Td fontWeight='medium'>
               {site.site}
             </Td>
@@ -45,7 +46,7 @@ const SiteTable = ({sites}) => {
               <Link href='/'>View Feedback</Link>
             </Td>
             <Td>
-              {site.createdAt}
+              {format(parseISO(site.createdAt), 'PPpp')}
             </Td>
           </Box>
           ))}

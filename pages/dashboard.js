@@ -7,7 +7,7 @@ import SiteTable from '@/components/SiteTable'
 
 
 export default function Dashboard() {
-  const { data } = useSWR('/api/sites', fetcher)
+  const { data, mutate } = useSWR('/api/sites', fetcher)
 
   if(!data) {
     return (
