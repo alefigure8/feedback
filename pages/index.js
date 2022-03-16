@@ -19,7 +19,7 @@ export default function Home() {
         </Head>
         <Logo boxSize={16} />
         {auth?.user ?(
-          <Button mt={4} size='sm' onClick={(e) => auth.signout()}>Sign Out</Button>
+          <Button mt={4} size='sm'><a href='http://localhost:3000/dashboard'>Dashboard</a></Button>
           ) : (
           <Button mt={4} size='sm' onClick={(e) => auth.signinWithGithub()}>Sign In</Button>
           )
